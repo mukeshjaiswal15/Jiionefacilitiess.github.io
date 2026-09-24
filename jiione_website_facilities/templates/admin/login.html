@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Admin Login — Jii One Facilities{% endblock %}
+{% block content %}
+<section>
+  <div class="container">
+    <div class="framed form-shell">
+      <h2>Admin Login</h2>
+      <div class="sub">Restricted access for Jii One Facilities staff.</div>
+      <form method="POST" action="{{ url_for('admin_login') }}">
+        <div class="field">
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username" required autofocus>
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" required>
+        </div>
+        <button type="submit" class="btn btn-solid">Log In</button>
+      </form>
+      <div class="form-foot">
+        <a href="{{ url_for('login') }}">Client login instead</a><br>
+        No admin yet? <a href="{{ url_for('setup_admin') }}">Create the first admin account</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

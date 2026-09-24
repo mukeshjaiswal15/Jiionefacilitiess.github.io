@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Our Services — Jii One Facilities{% endblock %}
+{% block content %}
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="kicker">Our Services</div>
+      <h2>Committed · Reliable · Corporate Facilities</h2>
+      <div class="divider"></div>
+      <p>Eight service lines, one point of contact. Every engagement is staffed, supervised and billed through Jii One, so your facilities team manages one vendor instead of eight.</p>
+    </div>
+
+    <div class="services-grid">
+      {% for s in services %}
+      <a class="service-cell" href="{{ url_for('service_detail', slug=s.slug) }}">
+        <div class="icon">{{ s.icon_svg }}</div>
+        <h3>{{ s.name }}</h3>
+        <p>{{ s.desc }}</p>
+        <span class="service-link">Request staff &rarr;</span>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--card); border-top:1px solid #d9cfb3;">
+  <div class="container" style="text-align:center;">
+    <h3>Not sure which services you need?</h3>
+    <p style="margin:10px auto 20px;">Share a few details about your site and headcount, and we'll recommend a plan.</p>
+    <a href="{{ url_for('contact') }}" class="btn btn-orange">Request a Quote</a>
+  </div>
+</section>
+{% endblock %}

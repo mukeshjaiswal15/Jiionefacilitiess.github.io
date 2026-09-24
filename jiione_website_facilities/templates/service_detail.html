@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block title %}{{ service.name }} — Jii One Facilities{% endblock %}
+{% block content %}
+
+<section style="padding-bottom:0;">
+  <div class="container">
+    <a href="{{ url_for('services') }}" style="font-size:0.85rem; text-decoration:none; color:var(--ink-soft);">&larr; All Services</a>
+  </div>
+</section>
+
+<section class="contact-grid" style="padding-top:20px;">
+  <div class="container contact-grid">
+    <div>
+      <div class="service-icon-lg">{{ service.icon_svg }}</div>
+      <h1 style="font-size:2.3rem;">{{ service.name }}</h1>
+      <p class="lead">{{ service.detail }}</p>
+      <p>Staffing is arranged per site — tell us the headcount and location you need and we'll get a plan back to you.</p>
+    </div>
+
+    <div class="framed" style="padding:30px;">
+      {% if session.get('user_id') %}
+        <h3 style="margin-bottom:6px;">Request staff for this service</h3>
+        <div class="sub" style="text-align:left; margin-bottom:18px;">Logged in as {{ session_user_name }}</div>
+        <form method="POST" action="{{ url_for('service_detail', slug=service.slug) }}">
+          <div class="field">
+            <label for="staff_count">How many staff do you need?</label>
+            <input type="number" id="staff_count" name="staff_count" min="1" required>
+          </div>
+          <div class="field">
+            <label for="site">Site / location</label>
+            <input type="text" id="site" name="site" placeholder="e.g. Sion East office, Mumbai">
+          </div>
+          <div class="field">
+            <label for="needed_from">Needed from</label>
+            <input type="date" id="needed_from" name="needed_from">
+          </div>
+          <div class="field">
+            <label for="notes">Anything else we should know?</label>
+            <textarea id="notes" name="notes" rows="3"></textarea>
+          </div>
+          <button type="submit" class="btn btn-orange">Submit Request</button>
+        </form>
+      {% else %}
+        <h3>Request staff for this service</h3>
+        <p style="margin-top:10px;">Please log in to send a staffing request — this lets us tie it to your account and follow up with you directly.</p>
+        <a href="{{ url_for('login', next=url_for('service_detail', slug=service.slug)) }}" class="btn btn-orange" style="width:100%; text-align:center; margin-top:10px;">Log In to Request</a>
+        <div class="form-foot">
+          No account yet? <a href="{{ url_for('register', next=url_for('service_detail', slug=service.slug)) }}">Create one</a>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--card); border-top:1px solid #d9cfb3;">
+  <div class="container">
+    <h3>Other services</h3>
+    <div class="chip-row">
+      {% for s in all_services %}
+        {% if s.slug != service.slug %}
+        <a class="chip" href="{{ url_for('service_detail', slug=s.slug) }}">{{ s.name }}</a>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% endblock %}

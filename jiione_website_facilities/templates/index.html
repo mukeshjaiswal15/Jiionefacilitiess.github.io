@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %}Jii One Facilities — Corporate Facility Management, Mumbai{% endblock %}
+{% block content %}
+
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <div class="eyebrow-line">Purva Ashadha Nakshatra · Black &amp; Dark Blue · Prosperity, Success, Stability</div>
+      <h1>One window for every corporate facility need.</h1>
+      <p class="lead">Jii One Facilities manages the everyday operations that keep an office running — housekeeping, security, staffing, pest control and more — so your team can focus on their own work, not the building's.</p>
+      <div class="hero-actions">
+        <a href="{{ url_for('contact') }}" class="btn btn-orange">Request a Quote</a>
+        <a href="{{ url_for('services') }}" class="btn">View Services</a>
+      </div>
+    </div>
+    <div class="framed hero-panel">
+      <div class="crest">J1</div>
+      <h3>Parshuram Konike</h3>
+      <div class="role" style="color:var(--orange); font-size:.85rem;">Director</div>
+      <div class="stat-row">
+        <div class="stat"><b>8</b><span>Service Lines</span></div>
+        <div class="stat"><b>2016</b><span>Founded</span></div>
+        <div class="stat"><b>Mumbai</b><span>Head Office</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="kicker">What we do</div>
+      <h2>Committed · Reliable · Corporate Facilities</h2>
+      <div class="divider"></div>
+    </div>
+
+    <div class="services-grid">
+      {% for s in services %}
+      <a class="service-cell" href="{{ url_for('service_detail', slug=s.slug) }}">
+        <div class="icon">{{ s.icon_svg }}</div>
+        <h3>{{ s.name }}</h3>
+        <p>{{ s.desc }}</p>
+        <span class="service-link">Request staff &rarr;</span>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--card); border-top:1px solid #d9cfb3; border-bottom:1px solid #d9cfb3;">
+  <div class="container" style="text-align:center;">
+    <h2>Excellence in facility management for corporates</h2>
+    <p style="margin:12px auto 0;">Tell us what your site needs, and we'll put together a service plan — no long forms, just a conversation.</p>
+    <div class="hero-actions" style="justify-content:center; margin-top:22px;">
+      <a href="{{ url_for('contact') }}" class="btn btn-solid">Talk to Us</a>
+      <a href="{{ url_for('register') }}" class="btn">Create a Client Account</a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Contact — Jii One Facilities{% endblock %}
+{% block content %}
+<section>
+  <div class="container contact-grid">
+    <div>
+      <div class="section-head">
+        <div class="kicker">Get in touch</div>
+        <h2>Contact Jii One Facilities</h2>
+        <div class="divider"></div>
+      </div>
+      <ul class="contact-list">
+        <li><span class="label">Address</span><span>301/14 Pratiksha Nagar, Sion East, Mumbai 400022</span></li>
+        <li><span class="label">Phone</span><span>9820526102 / 9152777761</span></li>
+        <li><span class="label">Email</span><span>facilities@jiionegroup.in</span></li>
+        <li><span class="label">Website</span><span>www.jiionegroup.in</span></li>
+      </ul>
+    </div>
+
+    <div class="framed" style="padding:30px;">
+      <h3 style="margin-bottom:16px;">Send an enquiry</h3>
+      <form method="POST" action="{{ url_for('contact') }}">
+        <div class="field">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="field">
+          <label for="company">Company</label>
+          <input type="text" id="company" name="company">
+        </div>
+        <div class="field">
+          <label for="phone">Phone</label>
+          <input type="tel" id="phone" name="phone" required>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="field">
+          <label for="message">What do you need?</label>
+          <textarea id="message" name="message" rows="4"></textarea>
+        </div>
+        <button type="submit" class="btn btn-orange">Send Enquiry</button>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}

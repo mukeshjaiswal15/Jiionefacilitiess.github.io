@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}My Account — Jii One Facilities{% endblock %}
+{% block content %}
+<div class="dash-wrap">
+  <aside class="dash-side">
+    <h3>My Account</h3>
+    <a href="{{ url_for('dashboard') }}">Overview</a>
+    <a href="{{ url_for('contact') }}">New Enquiry</a>
+    <a href="{{ url_for('logout') }}">Log Out</a>
+  </aside>
+  <div class="dash-main">
+    <h2>Welcome, {{ user.name }}</h2>
+    <p>{{ user.company or "" }}</p>
+
+    <div class="framed" style="padding:22px; max-width:480px; margin-top:20px;">
+      <h3>Account details</h3>
+      <ul class="contact-list">
+        <li><span class="label">Name</span><span>{{ user.name }}</span></li>
+        <li><span class="label">Email</span><span>{{ user.email }}</span></li>
+        <li><span class="label">Company</span><span>{{ user.company or "—" }}</span></li>
+      </ul>
+    </div>
+
+    <h3 style="margin-top:34px;">My Staff Requests</h3>
+    {% if staff_requests %}
+    <table class="table-classic">
+      <tr><th>Date</th><th>Service</th><th>Staff</th><th>Site</th><th>Status</th></tr>
+      {% for r in staff_requests %}
+      <tr>
+        <td>{{ r.created_at.strftime('%d %b %Y') }}</td>
+        <td>{{ r.service_name }}</td>
+        <td>{{ r.staff_count }}</td>
+        <td>{{ r.site or "—" }}</td>
+        <td><span class="status-pill status-{{ r.status }}">{{ r.status }}</span></td>
+      </tr>
+      {% endfor %}
+    </table>
+    {% else %}
+    <p>No staff requests yet. <a href="{{ url_for('services') }}">Browse services</a> to request staff.</p>
+    {% endif %}
+
+    <h3 style="margin-top:34px;">My Enquiries</h3>
+    {% if enquiries %}
+    <table class="table-classic">
+      <tr><th>Date</th><th>Message</th></tr>
+      {% for e in enquiries %}
+      <tr><td>{{ e.created_at.strftime('%d %b %Y') }}</td><td>{{ e.message }}</td></tr>
+      {% endfor %}
+    </table>
+    {% else %}
+    <p>You haven't sent any enquiries yet. <a href="{{ url_for('contact') }}">Send one now</a>.</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

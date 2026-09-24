@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Create Account — Jii One Facilities{% endblock %}
+{% block content %}
+<section>
+  <div class="container">
+    <div class="framed form-shell">
+      <h2>Create a Client Account</h2>
+      <div class="sub">For corporates working with Jii One Facilities.</div>
+      <form method="POST" action="{{ url_for('register') }}">
+        <input type="hidden" name="next" value="{{ next }}">
+        <div class="field">
+          <label for="name">Full name</label>
+          <input type="text" id="name" name="name" required autofocus>
+        </div>
+        <div class="field">
+          <label for="company">Company</label>
+          <input type="text" id="company" name="company">
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" required minlength="6">
+        </div>
+        <button type="submit" class="btn btn-solid">Create Account</button>
+      </form>
+      <div class="form-foot">
+        Already have an account? <a href="{{ url_for('login', next=next) }}">Log in</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

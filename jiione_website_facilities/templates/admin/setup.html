@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Create Admin Account — Jii One Facilities{% endblock %}
+{% block content %}
+<section>
+  <div class="container">
+    <div class="framed form-shell">
+      <h2>Create Admin Account</h2>
+      <div class="sub">One-time setup. This page stops working once an admin exists.</div>
+      <form method="POST" action="{{ url_for('setup_admin') }}{% if key_required %}?key={{ request.args.get('key','') }}{% endif %}">
+        <div class="field">
+          <label for="username">Admin username</label>
+          <input type="text" id="username" name="username" required autofocus>
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" required minlength="6">
+        </div>
+        <div class="field">
+          <label for="confirm">Confirm password</label>
+          <input type="password" id="confirm" name="confirm" required minlength="6">
+        </div>
+        <button type="submit" class="btn btn-solid">Create Admin</button>
+      </form>
+      <div class="form-foot"><a href="{{ url_for('admin_login') }}">Back to admin login</a></div>
+    </div>
+  </div>
+</section>
+{% endblock %}
