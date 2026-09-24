@@ -1,5 +1,5 @@
 Flask
-pymongo
+pymongo>=4.10,<5
 gunicorn
 python-dotenv
 Werkzeug
