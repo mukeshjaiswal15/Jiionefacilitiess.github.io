@@ -1,3 +1,5 @@
+import certifi
+
 """
 Jii One Facilities — website backend
 Flask + MongoDB (pymongo)
